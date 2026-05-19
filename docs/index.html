@@ -19,6 +19,13 @@
     .sub{color:var(--muted);font-size:14px}
     input,select,button{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;font-size:15px;background:#fff}
     .grid{display:grid;grid-template-columns:1fr;gap:10px}
+    .btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .secondary{background:#799584}
+    .book-ops{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .action-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+    .tag-btn{padding:10px 8px;font-size:13px;border-radius:8px;background:#e7efe9;color:#2e4a3b;border:1px solid #cfe0d6;font-weight:600}
+    .tag-btn.danger{background:#f3e7e7;color:#7a3434;border-color:#e6c7c7}
+    .record-item{border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:10px;background:#fbfdfb;display:grid;gap:6px}
     button{background:var(--accent);color:#fff;border:none;font-weight:600}
     button:hover{background:var(--accent2)}
     .result-count{margin-bottom:10px;color:var(--accent);font-size:14px}
@@ -32,6 +39,7 @@
     .badge.fun{background:#f0e8ef;color:#6a3b63}
     .empty{color:var(--muted);font-size:14px;padding:8px 0}
     .reco-columns{display:grid;grid-template-columns:1fr;gap:12px}
+    @media (max-width: 520px){.action-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}.btn-row{grid-template-columns:1fr}}
     @media (min-width: 860px){.reco-columns{grid-template-columns:1fr 1fr}}
   </style>
 </head>
@@ -59,7 +67,7 @@
 
     <section class="card">
       <h2>🎯 为我推荐</h2>
-      <button id="recommend-btn">为我推荐</button>
+      <div class="btn-row"><button id="recommend-btn">为我推荐</button><button id="refresh-recommend-btn" class="secondary">换一批</button></div>
       <p class="sub" style="margin-top:8px">仅从当前仓库已有书籍中推荐，不引入外部资源。</p>
     </section>
 
@@ -70,6 +78,14 @@
         <p>• 快乐狗血向：BL/耽美、古耽、仙侠、权谋、虐恋、破镜重圆、替身、先婚后爱等强拉扯题材。</p>
         <p>• 过滤倾向：尽量避开过度鸡汤、无张力、人物关系单薄内容。</p>
       </div>
+    </section>
+
+
+    <section class="card">
+      <h2>📝 我的记录</h2>
+      <p id="record-summary" class="sub"></p>
+      <div id="record-list"></div>
+      <button id="clear-records-btn" class="secondary">清空全部记录</button>
     </section>
 
     <section id="recommendation-section" class="card">
