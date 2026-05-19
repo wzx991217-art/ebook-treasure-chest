@@ -182,3 +182,48 @@
 - [操作系统(1)](md/操作系统.md)  | - [摇滚(1)](md/摇滚.md)  | - [世纪三部曲(1)](md/世纪三部曲.md)  | - [腐败(1)](md/腐败.md)  | - [经验(1)](md/经验.md)  | - [大脑科学(1)](md/大脑科学.md)  | - [家庭教育(1)](md/家庭教育.md)  | - [武术(1)](md/武术.md) 
 - [家训(1)](md/家训.md)  | - [教练(1)](md/教练.md)  | - [地球(1)](md/地球.md)  | - [访谈录(1)](md/访谈录.md)  | - [维也纳(1)](md/维也纳.md)  | - [蒙田(1)](md/蒙田.md)  | - [孩子(1)](md/孩子.md)  | - [编程语言(1)](md/编程语言.md) 
 - [自然科学(1)](md/自然科学.md)  | - [微软(1)](md/微软.md)  | - [协同(1)](md/协同.md)  | - [公益(1)](md/公益.md)  | - [婚恋(1)](md/婚恋.md)  | - [福尔摩斯(1)](md/福尔摩斯.md)  | - [创投(1)](md/创投.md)  | - [迪士尼(1)](md/迪士尼.md)
+
+---
+
+## 📱 私人书库（PWA）使用说明
+
+### 本地运行
+
+```bash
+# 1) 生成数据（如需最新）
+python scripts/parse_md_to_json.py
+
+# 2) 启动本地静态服务（任选一种）
+python -m http.server 8080
+# 或
+npx serve .
+```
+
+访问：`http://localhost:8080/docs/`
+
+### 部署方式
+
+本项目适合部署为 **GitHub Pages 静态站点**：
+- 书库数据在仓库内（`md/` + `docs/all-books.json`）
+- 前端纯静态（`docs/index.html` + `docs/search.js`）
+- 已支持 PWA（`manifest.json` + `service-worker.js`）
+
+### 安卓手机“添加到桌面”
+
+1. 用 Chrome 打开 `docs` 页面（线上域名）
+2. 点击右上角菜单 → **添加到主屏幕**
+3. 应用名显示为：**私人书库**
+4. 添加后可像 App 一样从桌面启动
+
+### 关于 APK
+
+当前优先推荐 PWA，不强制转 APK。若未来要打包 APK，可考虑：
+
+- 方案 A：TWA（Trusted Web Activity）
+  - 需要 Android Studio
+  - 需要配置包名、签名证书、Digital Asset Links
+- 方案 B：WebView 壳（如 Capacitor/Cordova）
+  - 需要 Node 环境和 Android SDK
+  - 需要配置图标、启动页、权限与离线策略
+
+> 结论：当前仓库结构非常适合 PWA，若要 APK 需额外 Android 工程化步骤。
